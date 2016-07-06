@@ -36,6 +36,7 @@ function places(req, res) {
         url: url
     };
 
+    var request = require('request');
     return request(options, function(error, response, body) {
         if (error) throw new Error(error);
         res.send(body);
