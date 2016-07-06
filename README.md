@@ -1,2 +1,11 @@
-# dnl-wam
-Web API middleware for dnl performance
+# fd-wam
+fanduel web api middleware
+
+## How to run
+```sh
+npm install
+```
+
+```sh
+node index
+```

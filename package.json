@@ -1,0 +1,20 @@
+{
+  "name": "fd-wam",
+  "version": "1.0.0",
+  "description": "fanduel web api middleware",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Michael Sholty",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.7.1",
+    "errorhandler": "^1.4.3",
+    "express": "^4.13.4",
+    "method-override": "^2.3.6",
+    "path": "^0.12.7",
+    "pem": "^1.8.3",
+    "request": "^2.72.0"
+  }
+}
