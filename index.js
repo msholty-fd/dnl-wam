@@ -7,6 +7,7 @@ var cors = require('cors');
 var corsOptions = {
     allowedHeaders: 'Authorization'
 };
+var config = require('./config.js');
 
 var accessToken;
 
@@ -27,8 +28,9 @@ https.createServer({
 }, app).listen(3000);
 
 function places(req, res) {
-    var apiKey = 'AIzaSyCwlVHbm34Cbq1rV2mW4MHGP1gBcu7vw9M';
-    var placeId = req.params.placeId;
+    var apiKey = 'AIzaSyDgT571g_5t7Gs7F2QD6SKFy0xNpFbXDaE';
+    var placeId = 'ChIJEwu80FGk6IgRN6w1XJkluZA';//req.params.placeId;
+    console.log('req.params:', req.params);
     var url = `https://maps.googleapis.com/maps/api/place/details/json?placeid=${placeId}&key=${apiKey}`;
 
     var options = {
@@ -36,8 +38,10 @@ function places(req, res) {
         url: url
     };
 
+    console.log('url:', url);
     var request = require('request');
     return request(options, function(error, response, body) {
+        console.log('response status code:', response.statusCode);
         if (error) throw new Error(error);
         res.send(body);
     });
