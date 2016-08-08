@@ -1,9 +1,10 @@
 var http = require('http');
 var express = require('express');
+var router = express.Router();
 var app = express();
 
-app.get('/wam/google/places', places);
-
+router.get('/google/places', places);
+app.use('/wam', router);
 app.set('port', process.env.PORT || 3000);
 
 http.createServer(app).listen(app.get('port'), function() {
