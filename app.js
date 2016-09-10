@@ -1,5 +1,8 @@
 var http = require('http');
 var express = require('express');
+var NodeCache = require("node-cache");
+var googleCache = new NodeCache({ stdTTL: 604800 });
+var request = require('request');
 var router = express.Router();
 var app = express();
 
@@ -23,11 +26,19 @@ function places(req, res) {
         url: url
     };
 
-    console.log('url:', url);
-    var request = require('request');
-    return request(options, function(error, response, body) {
-        console.log('response status code:', response.statusCode);
-        if (error) throw new Error(error);
-        res.send(body);
+    googleCache.get("google.places", function(err, value) {
+        if (!err) {
+            if (value == undefined) {
+                request(options, function(error, response, body) {
+                    console.log('response status code:', response.statusCode);
+                    if (error) throw new Error(error);
+                    googleCache.set('google.places', body);
+                    res.send(body);
+                });
+            } else {
+                console.log('returning cached value');
+                res.send(value);
+            }
+        }
     });
 }
